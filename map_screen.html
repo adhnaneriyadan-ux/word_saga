@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Saga - Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#00210c",
+                        "tertiary-fixed-dim": "#eec209",
+                        "on-primary-fixed-variant": "#4723be",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "inverse-surface": "#213145",
+                        "primary-fixed-dim": "#cabeff",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#1c0062",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#484554",
+                        "surface-offwhite": "#F8FAFC",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error": "#ffffff",
+                        "background": "#f8f9ff",
+                        "secondary-fixed-dim": "#4ae183",
+                        "surface-tint": "#6042d6",
+                        "tertiary-fixed": "#ffe084",
+                        "secondary": "#006d37",
+                        "on-background": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "inverse-primary": "#cabeff",
+                        "on-secondary-container": "#00743a",
+                        "secondary-fixed": "#6bfe9c",
+                        "on-tertiary-container": "#4e3e00",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-container": "#6bfe9c",
+                        "on-secondary": "#ffffff",
+                        "primary": "#451ebb",
+                        "primary-container": "#5d3fd3",
+                        "tile-correct": "#6AAA64",
+                        "on-surface": "#0b1c30",
+                        "tile-present": "#C9B458",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c9c4d7",
+                        "action-blue": "#3498DB",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed": "#231b00",
+                        "on-primary-container": "#d8ceff",
+                        "tertiary": "#735c00",
+                        "on-secondary-fixed-variant": "#005228",
+                        "surface-container-low": "#eff4ff",
+                        "outline": "#797586",
+                        "tertiary-container": "#cea700",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#e6deff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#dce9ff",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-padding": "20px",
+                        "tile-gap": "8px",
+                        "stack-sm": "12px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px"
+                    },
+                    fontFamily: {
+                        "display-hero": ["Quicksand"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "tile-text": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Quicksand"],
+                        "label-bold": ["Be Vietnam Pro"]
+                    },
+                    fontSize: {
+                        "display-hero": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "tile-text": ["36px", { "lineHeight": "44px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .map-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .map-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-ring {
+            animation: map-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes map-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+
+        /* Tactile button layering */
+        .node-completed {
+            box-shadow: 0 4px 0 0 #5d3fd3; /* primary-container */
+        }
+        .node-active {
+            box-shadow: 0 4px 0 0 #00743a; /* on-secondary-container */
+            transform: translateY(-2px);
+        }
+        .node-locked {
+            box-shadow: 0 4px 0 0 #c9c4d7; /* outline-variant */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden">
+<!-- Top App Bar (Stats) -->
+<header class="flex items-center justify-between bg-surface/95 backdrop-blur-sm px-container-padding py-3 z-20 border-b border-surface-variant shrink-0 shadow-sm relative">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary border-b-2 border-primary-container shadow-sm">
+<span class="material-symbols-outlined" data-icon="forest" data-weight="fill" style="font-variation-settings: 'FILL' 1;">forest</span>
+</div>
+<h1 class="font-headline-lg-mobile text-on-surface leading-none">Everwood</h1>
+</div>
+<div class="flex items-center gap-2 bg-tertiary-fixed px-3 py-1.5 rounded-full border-b-2 border-tertiary-fixed-dim shadow-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="monetization_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="font-label-bold text-on-tertiary-fixed-variant text-base">1,250</span>
+</div>
+</header>
+<!-- Map Area (Scrollable) -->
+<main class="flex-1 relative overflow-y-auto map-scrollbar bg-surface-container-low" id="map-container">
+<!-- Stylized Forest Background -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-40 bg-cover bg-bottom bg-no-repeat fixed" data-alt="A lush, stylized 2D vector art background of a magical forest. The scene features layered, overlapping trees in varying shades of vibrant greens and warm browns, creating a sense of subtle depth and adventure. The lighting is bright and cheerful, perfectly suited for a playful, light-mode casual game environment. Soft sunbeams filter through the canopy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBU50oaOY7NVb8GepvoLmbmCDbK-ed3vDMRoJaDly35raHdiSHykv_Ufw-iRfbshV1j8rhOhqPSlbYQUqneztbs8JwBXPpytA1n5-2CaTrnTguwVqaFY1AwRXJS7fXpfIGHZKDhSSdsIGTBhvHzbwRUEvUMFkgYYXMVcUQCjwWNMMbq-MfT3maHAh09C2Woxf8Fr6aX28qyTA2nIJYpRV5N7M9Q7o5-roBWGJtdeSWdUKGs-v65L69MYhc9Kzgf28WQH8f13pE1RfzQ')">
+</div>
+<!-- Scrolling Content Container (Tall to allow serpentine layout) -->
+<div class="relative w-full h-[1500px] z-10 pb-32">
+<!-- Dashed Path SVG -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 1000">
+<path d="M 30 950 C 10 880, 80 820, 50 750 C 20 680, 70 620, 75 550 C 80 480, 30 420, 50 350 C 70 280, 20 220, 40 150 C 60 80, 50 20, 50 20" fill="none" stroke="#c9c4d7" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<!-- Level 10 (Completed, 3 Stars) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 5%; left: 30%; transform: translateX(-50%);">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary font-tile-text text-2xl flex items-center justify-center node-completed relative z-10 transition-transform active:translate-y-1 active:shadow-none">
+                    10
+                </button>
+<div class="flex gap-0.5 text-tertiary-fixed-dim drop-shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Level 11 (Completed, 2 Stars) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 15%; left: 65%; transform: translateX(-50%);">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary font-tile-text text-2xl flex items-center justify-center node-completed relative z-10 transition-transform active:translate-y-1 active:shadow-none">
+                    11
+                </button>
+<div class="flex gap-0.5 text-tertiary-fixed-dim drop-shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-outline-variant" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Level 12 (Active) -->
+<div class="absolute flex flex-col items-center gap-2" style="bottom: 25%; left: 45%; transform: translateX(-50%); z-20">
+<div class="relative">
+<div class="absolute inset-0 bg-secondary-fixed rounded-full pulse-ring blur-sm"></div>
+<button class="w-20 h-20 rounded-full bg-secondary text-on-secondary font-tile-text text-3xl flex items-center justify-center node-active relative z-10 ring-4 ring-surface-bright">
+                        12
+                    </button>
+<!-- Small avatar or indicator could go here -->
+<div class="absolute -top-3 -right-2 bg-error text-on-error rounded-full w-8 h-8 flex items-center justify-center text-xs font-label-bold shadow-md border-2 border-surface-bright transform rotate-12">
+                        NEW
+                    </div>
+</div>
+<div class="bg-surface-bright/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-label-bold text-on-surface shadow-sm">
+                    Tap to Play!
+                </div>
+</div>
+<!-- Level 13 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 35%; left: 70%; transform: translateX(-50%); opacity: 0.9;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 14 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 45%; left: 35%; transform: translateX(-50%); opacity: 0.8;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 15 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 55%; left: 60%; transform: translateX(-50%); opacity: 0.7;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 16 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 65%; left: 40%; transform: translateX(-50%); opacity: 0.6;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 17 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 75%; left: 75%; transform: translateX(-50%); opacity: 0.6;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 18 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 85%; left: 50%; transform: translateX(-50%); opacity: 0.5;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 19 (Locked) -->
+<div class="absolute flex flex-col items-center gap-1" style="bottom: 92%; left: 25%; transform: translateX(-50%); opacity: 0.4;">
+<div class="w-14 h-14 rounded-full bg-surface-variant text-on-surface-variant font-tile-text text-2xl flex items-center justify-center node-locked relative z-10">
+<span class="material-symbols-outlined" data-icon="lock" data-weight="regular">lock</span>
+</div>
+</div>
+<!-- Level 20 (Locked, Boss Node) -->
+<div class="absolute flex flex-col items-center gap-2" style="bottom: 98%; left: 50%; transform: translateX(-50%); opacity: 0.4;">
+<div class="w-16 h-16 rounded-full bg-inverse-surface text-inverse-on-surface font-tile-text text-2xl flex items-center justify-center node-locked relative z-10 shadow-lg">
+<span class="material-symbols-outlined text-3xl" data-icon="castle" data-weight="regular">castle</span>
+</div>
+<div class="bg-surface-variant px-3 py-1 rounded-full text-xs font-label-bold text-on-surface-variant">
+                    Boss Realm
+                </div>
+</div>
+</div>
+</main>
+<!-- Shared Bottom Navigation Bar (Strict implementation) -->
+<div class="shrink-0 z-20 shadow-[0_-4px_16px_rgba(0,0,0,0.05)]">
+<div class="flex gap-2 border-t border-[#eae9f2] bg-[#f9f9fb] px-4 pb-3 pt-2" style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-[#110f1a]" href="#">
+<div class="text-[#110f1a] flex h-8 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="map" data-size="24px" data-weight="fill" style="font-variation-settings: 'FILL' 1;">map</span>
+</div>
+<p class="text-[#110f1a] text-xs font-medium leading-normal tracking-[0.015em]">Map</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#62568f]" href="#">
+<div class="text-[#62568f] flex h-8 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="backpack" data-size="24px" data-weight="regular">backpack</span>
+</div>
+<p class="text-[#62568f] text-xs font-medium leading-normal tracking-[0.015em]">Inventory</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#62568f]" href="#">
+<div class="text-[#62568f] flex h-8 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="storefront" data-size="24px" data-weight="regular">storefront</span>
+</div>
+<p class="text-[#62568f] text-xs font-medium leading-normal tracking-[0.015em]">Shop</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#62568f]" href="#">
+<div class="text-[#62568f] flex h-8 items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="settings" data-size="24px" data-weight="regular">settings</span>
+</div>
+<p class="text-[#62568f] text-xs font-medium leading-normal tracking-[0.015em]">Settings</p>
+</a>
+</div>
+</div>
+<script>
+        // Auto-scroll to the active node on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapContainer = document.getElementById('map-container');
+            // Scroll to near the bottom where level 12 is (25% from bottom)
+            // Container is 1500px, viewport is likely ~600-800px.
+            // 25% from bottom is roughly 1500 * 0.75 = 1125px down.
+            mapContainer.scrollTo({
+                top: 1000,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body></html>

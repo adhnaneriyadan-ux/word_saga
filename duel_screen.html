@@ -1,0 +1,350 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Word Saga - Duel Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Load Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-high": "#dce9ff",
+                "secondary-fixed-dim": "#4ae183",
+                "on-error-container": "#93000a",
+                "on-background": "#0b1c30",
+                "surface-tint": "#6042d6",
+                "surface-container-low": "#eff4ff",
+                "tertiary-container": "#cea700",
+                "primary-container": "#5d3fd3",
+                "inverse-primary": "#cabeff",
+                "primary-fixed": "#e6deff",
+                "surface-dim": "#cbdbf5",
+                "outline-variant": "#c9c4d7",
+                "on-secondary-fixed-variant": "#005228",
+                "secondary-container": "#6bfe9c",
+                "tertiary-fixed": "#ffe084",
+                "surface-container-highest": "#d3e4fe",
+                "surface-offwhite": "#F8FAFC",
+                "primary": "#451ebb",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "tertiary-fixed-dim": "#eec209",
+                "outline": "#797586",
+                "on-tertiary-container": "#4e3e00",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-surface": "#0b1c30",
+                "on-secondary-fixed": "#00210c",
+                "inverse-on-surface": "#eaf1ff",
+                "surface": "#f8f9ff",
+                "action-blue": "#3498DB",
+                "on-tertiary-fixed-variant": "#574500",
+                "secondary-fixed": "#6bfe9c",
+                "secondary": "#006d37",
+                "tile-correct": "#6AAA64",
+                "tertiary": "#735c00",
+                "on-primary-container": "#d8ceff",
+                "on-primary-fixed-variant": "#4723be",
+                "surface-variant": "#d3e4fe",
+                "surface-bright": "#f8f9ff",
+                "background": "#f8f9ff",
+                "surface-container": "#e5eeff",
+                "on-primary": "#ffffff",
+                "on-primary-fixed": "#1c0062",
+                "error": "#ba1a1a",
+                "tile-present": "#C9B458",
+                "on-surface-variant": "#484554",
+                "primary-fixed-dim": "#cabeff",
+                "on-tertiary-fixed": "#231b00",
+                "inverse-surface": "#213145",
+                "on-secondary-container": "#00743a",
+                "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-sm": "12px",
+                "stack-lg": "40px",
+                "stack-md": "24px",
+                "container-padding": "20px",
+                "tile-gap": "8px"
+            },
+            "fontFamily": {
+                "display-hero": ["Quicksand"],
+                "headline-lg": ["Quicksand"],
+                "body-md": ["Be Vietnam Pro"],
+                "body-lg": ["Be Vietnam Pro"],
+                "tile-text": ["Quicksand"],
+                "label-bold": ["Be Vietnam Pro"],
+                "headline-lg-mobile": ["Quicksand"]
+            },
+            "fontSize": {
+                "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .tactile-button {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+        }
+        .tactile-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+        }
+
+        .tile-pop {
+            animation: tilePop 0.15s ease-out;
+        }
+        @keyframes tilePop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .adventure-dust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f4ff 100%);
+            overflow: hidden;
+        }
+
+        .dust-particle {
+            position: absolute;
+            background: rgba(69, 30, 187, 0.05);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.3; }
+            100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+        }
+
+        .tile-correct-style {
+            background: linear-gradient(180deg, #7cc476 0%, #6AAA64 100%);
+            color: white;
+            border-bottom: 4px solid #538d4e;
+        }
+        .tile-present-style {
+            background: linear-gradient(180deg, #d8c56e 0%, #C9B458 100%);
+            color: white;
+            border-bottom: 4px solid #b59f3b;
+        }
+        .tile-empty-style {
+            background-color: white;
+            border: 2px solid #e2e8f0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col overflow-x-hidden">
+<!-- Background Particle Effect -->
+<div class="adventure-dust" id="dust-layer"><div class="dust-particle" style="width: 3.02458px; height: 3.02458px; left: 55.947%; top: 57.721%; animation: 10.0749s linear 0s infinite normal none running float; opacity: 0.380275;"></div><div class="dust-particle" style="width: 3.59838px; height: 3.59838px; left: 43.8349%; top: 84.4961%; animation: 15.4451s linear 0s infinite normal none running float; opacity: 0.32442;"></div><div class="dust-particle" style="width: 7.08732px; height: 7.08732px; left: 61.0218%; top: 43.7761%; animation: 17.1269s linear 0s infinite normal none running float; opacity: 0.210306;"></div><div class="dust-particle" style="width: 3.80068px; height: 3.80068px; left: 1.45369%; top: 27.4264%; animation: 18.1846s linear 0s infinite normal none running float; opacity: 0.0220516;"></div><div class="dust-particle" style="width: 8.24277px; height: 8.24277px; left: 93.6%; top: 64.893%; animation: 12.0136s linear 0s infinite normal none running float; opacity: 0.302588;"></div><div class="dust-particle" style="width: 7.54391px; height: 7.54391px; left: 54.9482%; top: 73.9861%; animation: 16.6404s linear 0s infinite normal none running float; opacity: 0.0999101;"></div><div class="dust-particle" style="width: 7.63975px; height: 7.63975px; left: 86.4405%; top: 19.3571%; animation: 11.2723s linear 0s infinite normal none running float; opacity: 0.17535;"></div><div class="dust-particle" style="width: 8.91929px; height: 8.91929px; left: 65.8851%; top: 36.7508%; animation: 13.8135s linear 0s infinite normal none running float; opacity: 0.14977;"></div><div class="dust-particle" style="width: 7.20296px; height: 7.20296px; left: 72.9899%; top: 17.8216%; animation: 12.7484s linear 0s infinite normal none running float; opacity: 0.291496;"></div><div class="dust-particle" style="width: 8.03558px; height: 8.03558px; left: 26.0757%; top: 43.8678%; animation: 14.0645s linear 0s infinite normal none running float; opacity: 0.151081;"></div><div class="dust-particle" style="width: 4.0453px; height: 4.0453px; left: 43.636%; top: 24.5241%; animation: 16.5983s linear 0s infinite normal none running float; opacity: 0.325628;"></div><div class="dust-particle" style="width: 6.89657px; height: 6.89657px; left: 90.4374%; top: 14.4778%; animation: 17.9759s linear 0s infinite normal none running float; opacity: 0.072592;"></div><div class="dust-particle" style="width: 7.94159px; height: 7.94159px; left: 44.311%; top: 67.7677%; animation: 11.9063s linear 0s infinite normal none running float; opacity: 0.0495648;"></div><div class="dust-particle" style="width: 7.80213px; height: 7.80213px; left: 66.0322%; top: 44.9614%; animation: 16.7561s linear 0s infinite normal none running float; opacity: 0.0414657;"></div><div class="dust-particle" style="width: 8.31863px; height: 8.31863px; left: 47.8415%; top: 32.2231%; animation: 19.9843s linear 0s infinite normal none running float; opacity: 0.0378712;"></div><div class="dust-particle" style="width: 4.62503px; height: 4.62503px; left: 15.7789%; top: 39.7011%; animation: 14.4984s linear 0s infinite normal none running float; opacity: 0.292087;"></div><div class="dust-particle" style="width: 8.17372px; height: 8.17372px; left: 49.0584%; top: 15.3375%; animation: 11.4903s linear 0s infinite normal none running float; opacity: 0.0960172;"></div><div class="dust-particle" style="width: 3.0814px; height: 3.0814px; left: 13.0745%; top: 88.1656%; animation: 15.7754s linear 0s infinite normal none running float; opacity: 0.0712314;"></div><div class="dust-particle" style="width: 4.91083px; height: 4.91083px; left: 54.7593%; top: 22.3923%; animation: 17.7237s linear 0s infinite normal none running float; opacity: 0.230128;"></div><div class="dust-particle" style="width: 5.10435px; height: 5.10435px; left: 60.4799%; top: 33.1329%; animation: 11.2648s linear 0s infinite normal none running float; opacity: 0.0340927;"></div><div class="dust-particle" style="width: 4.48262px; height: 4.48262px; left: 13.1387%; top: 97.8712%; animation: 12.6737s linear 0s infinite normal none running float; opacity: 0.233753;"></div><div class="dust-particle" style="width: 7.88492px; height: 7.88492px; left: 44.9377%; top: 69.9682%; animation: 12.0133s linear 0s infinite normal none running float; opacity: 0.174099;"></div><div class="dust-particle" style="width: 6.40843px; height: 6.40843px; left: 63.507%; top: 32.6646%; animation: 15.6719s linear 0s infinite normal none running float; opacity: 0.242057;"></div><div class="dust-particle" style="width: 3.92504px; height: 3.92504px; left: 58.2779%; top: 29.7087%; animation: 18.3699s linear 0s infinite normal none running float; opacity: 0.200717;"></div><div class="dust-particle" style="width: 7.79818px; height: 7.79818px; left: 49.913%; top: 82.5851%; animation: 18.7143s linear 0s infinite normal none running float; opacity: 0.0384952;"></div><div class="dust-particle" style="width: 7.32674px; height: 7.32674px; left: 36.5105%; top: 3.58527%; animation: 14.4742s linear 0s infinite normal none running float; opacity: 0.374613;"></div><div class="dust-particle" style="width: 3.58228px; height: 3.58228px; left: 12.5502%; top: 34.5423%; animation: 16.2725s linear 0s infinite normal none running float; opacity: 0.107709;"></div><div class="dust-particle" style="width: 6.2194px; height: 6.2194px; left: 8.6511%; top: 82.8166%; animation: 11.2562s linear 0s infinite normal none running float; opacity: 0.016253;"></div><div class="dust-particle" style="width: 6.51469px; height: 6.51469px; left: 5.36506%; top: 25.167%; animation: 16.5253s linear 0s infinite normal none running float; opacity: 0.209271;"></div><div class="dust-particle" style="width: 8.68921px; height: 8.68921px; left: 28.0935%; top: 92.7949%; animation: 16.0588s linear 0s infinite normal none running float; opacity: 0.0149282;"></div><div class="dust-particle" style="width: 6.43212px; height: 6.43212px; left: 17.6639%; top: 88.1222%; animation: 13.6264s linear 0s infinite normal none running float; opacity: 0.302081;"></div><div class="dust-particle" style="width: 6.1724px; height: 6.1724px; left: 25.2704%; top: 40.9884%; animation: 19.2638s linear 0s infinite normal none running float; opacity: 0.0764519;"></div><div class="dust-particle" style="width: 5.48657px; height: 5.48657px; left: 19.5345%; top: 29.5409%; animation: 16.3429s linear 0s infinite normal none running float; opacity: 0.265705;"></div><div class="dust-particle" style="width: 8.2742px; height: 8.2742px; left: 45.327%; top: 99.618%; animation: 16.9335s linear 0s infinite normal none running float; opacity: 0.260635;"></div><div class="dust-particle" style="width: 3.5295px; height: 3.5295px; left: 21.4364%; top: 5.57277%; animation: 12.6859s linear 0s infinite normal none running float; opacity: 0.245436;"></div><div class="dust-particle" style="width: 8.99239px; height: 8.99239px; left: 84.2858%; top: 25.6818%; animation: 16.665s linear 0s infinite normal none running float; opacity: 0.363609;"></div><div class="dust-particle" style="width: 8.84962px; height: 8.84962px; left: 52.6377%; top: 99.2757%; animation: 17.9833s linear 0s infinite normal none running float; opacity: 0.0561423;"></div><div class="dust-particle" style="width: 8.40402px; height: 8.40402px; left: 43.394%; top: 6.5684%; animation: 18.9182s linear 0s infinite normal none running float; opacity: 0.298063;"></div><div class="dust-particle" style="width: 3.04862px; height: 3.04862px; left: 41.061%; top: 39.4703%; animation: 13.5618s linear 0s infinite normal none running float; opacity: 0.0627709;"></div><div class="dust-particle" style="width: 6.3979px; height: 6.3979px; left: 16.3869%; top: 58.4196%; animation: 12.6091s linear 0s infinite normal none running float; opacity: 0.228416;"></div><div class="dust-particle" style="width: 7.58682px; height: 7.58682px; left: 68.1045%; top: 92.6487%; animation: 10.6251s linear 0s infinite normal none running float; opacity: 0.162234;"></div><div class="dust-particle" style="width: 4.57487px; height: 4.57487px; left: 64.9591%; top: 82.4546%; animation: 10.08s linear 0s infinite normal none running float; opacity: 0.328512;"></div><div class="dust-particle" style="width: 6.09789px; height: 6.09789px; left: 36.4353%; top: 72.0686%; animation: 14.8714s linear 0s infinite normal none running float; opacity: 0.0334583;"></div><div class="dust-particle" style="width: 5.00477px; height: 5.00477px; left: 21.0563%; top: 1.7591%; animation: 16.2228s linear 0s infinite normal none running float; opacity: 0.345881;"></div><div class="dust-particle" style="width: 7.22111px; height: 7.22111px; left: 27.0939%; top: 15.752%; animation: 17.4077s linear 0s infinite normal none running float; opacity: 0.344922;"></div><div class="dust-particle" style="width: 7.74952px; height: 7.74952px; left: 14.3958%; top: 29.928%; animation: 13.8385s linear 0s infinite normal none running float; opacity: 0.23158;"></div><div class="dust-particle" style="width: 7.63766px; height: 7.63766px; left: 95.7821%; top: 85.9264%; animation: 17.5295s linear 0s infinite normal none running float; opacity: 0.0014105;"></div><div class="dust-particle" style="width: 5.35763px; height: 5.35763px; left: 26.9658%; top: 99.7795%; animation: 19.5634s linear 0s infinite normal none running float; opacity: 0.241731;"></div><div class="dust-particle" style="width: 7.6828px; height: 7.6828px; left: 41.4641%; top: 23.3955%; animation: 15.8964s linear 0s infinite normal none running float; opacity: 0.338179;"></div><div class="dust-particle" style="width: 8.34429px; height: 8.34429px; left: 28.7865%; top: 46.5081%; animation: 19.2955s linear 0s infinite normal none running float; opacity: 0.382859;"></div><div class="dust-particle" style="width: 6.75059px; height: 6.75059px; left: 16.3857%; top: 2.6837%; animation: 14.6961s linear 0s infinite normal none running float; opacity: 0.119949;"></div><div class="dust-particle" style="width: 4.01857px; height: 4.01857px; left: 40.4106%; top: 95.9332%; animation: 12.0407s linear 0s infinite normal none running float; opacity: 0.171818;"></div><div class="dust-particle" style="width: 3.55553px; height: 3.55553px; left: 46.1172%; top: 98.6692%; animation: 19.2067s linear 0s infinite normal none running float; opacity: 0.0325474;"></div><div class="dust-particle" style="width: 8.00915px; height: 8.00915px; left: 13.8383%; top: 61.87%; animation: 15.6321s linear 0s infinite normal none running float; opacity: 0.112828;"></div><div class="dust-particle" style="width: 5.68532px; height: 5.68532px; left: 39.5608%; top: 47.8952%; animation: 11.0728s linear 0s infinite normal none running float; opacity: 0.0941542;"></div><div class="dust-particle" style="width: 5.12378px; height: 5.12378px; left: 72.981%; top: 3.41208%; animation: 18.2703s linear 0s infinite normal none running float; opacity: 0.227887;"></div><div class="dust-particle" style="width: 8.04958px; height: 8.04958px; left: 19.2577%; top: 76.9407%; animation: 12.1285s linear 0s infinite normal none running float; opacity: 0.238107;"></div><div class="dust-particle" style="width: 3.47821px; height: 3.47821px; left: 18.8073%; top: 27.5554%; animation: 14.3044s linear 0s infinite normal none running float; opacity: 0.266263;"></div><div class="dust-particle" style="width: 5.36824px; height: 5.36824px; left: 19.6529%; top: 36.9474%; animation: 11.3668s linear 0s infinite normal none running float; opacity: 0.258319;"></div><div class="dust-particle" style="width: 3.95257px; height: 3.95257px; left: 28.4588%; top: 69.0591%; animation: 18.5801s linear 0s infinite normal none running float; opacity: 0.265784;"></div><div class="dust-particle" style="width: 4.56368px; height: 4.56368px; left: 44.9118%; top: 53.3123%; animation: 13.8601s linear 0s infinite normal none running float; opacity: 0.166663;"></div><div class="dust-particle" style="width: 8.11945px; height: 8.11945px; left: 89.7852%; top: 81.9739%; animation: 13.5609s linear 0s infinite normal none running float; opacity: 0.0639424;"></div><div class="dust-particle" style="width: 7.06555px; height: 7.06555px; left: 36.2265%; top: 91.9227%; animation: 13.7175s linear 0s infinite normal none running float; opacity: 0.328387;"></div><div class="dust-particle" style="width: 8.03478px; height: 8.03478px; left: 26.2944%; top: 31.895%; animation: 13.5479s linear 0s infinite normal none running float; opacity: 0.0742069;"></div><div class="dust-particle" style="width: 4.05704px; height: 4.05704px; left: 21.965%; top: 66.5768%; animation: 18.2644s linear 0s infinite normal none running float; opacity: 0.100876;"></div><div class="dust-particle" style="width: 6.79692px; height: 6.79692px; left: 51.4706%; top: 57.6123%; animation: 16.6059s linear 0s infinite normal none running float; opacity: 0.0883792;"></div><div class="dust-particle" style="width: 3.42517px; height: 3.42517px; left: 27.6704%; top: 84.1141%; animation: 13.7071s linear 0s infinite normal none running float; opacity: 0.331383;"></div><div class="dust-particle" style="width: 6.66624px; height: 6.66624px; left: 74.211%; top: 75.8373%; animation: 14.3516s linear 0s infinite normal none running float; opacity: 0.0816819;"></div><div class="dust-particle" style="width: 6.45257px; height: 6.45257px; left: 93.8071%; top: 57.8767%; animation: 14.2004s linear 0s infinite normal none running float; opacity: 0.270871;"></div><div class="dust-particle" style="width: 6.3757px; height: 6.3757px; left: 18.3842%; top: 10.6759%; animation: 13.7891s linear 0s infinite normal none running float; opacity: 0.284188;"></div><div class="dust-particle" style="width: 8.80153px; height: 8.80153px; left: 68.1851%; top: 14.1322%; animation: 19.6642s linear 0s infinite normal none running float; opacity: 0.217369;"></div><div class="dust-particle" style="width: 6.9462px; height: 6.9462px; left: 95.3956%; top: 55.6234%; animation: 14.271s linear 0s infinite normal none running float; opacity: 0.0217611;"></div><div class="dust-particle" style="width: 8.83808px; height: 8.83808px; left: 9.30867%; top: 36.1046%; animation: 14.5432s linear 0s infinite normal none running float; opacity: 0.399482;"></div><div class="dust-particle" style="width: 6.16263px; height: 6.16263px; left: 15.4021%; top: 40.8154%; animation: 12.3394s linear 0s infinite normal none running float; opacity: 0.377981;"></div><div class="dust-particle" style="width: 8.52768px; height: 8.52768px; left: 47.4932%; top: 3.03027%; animation: 10.7577s linear 0s infinite normal none running float; opacity: 0.256074;"></div><div class="dust-particle" style="width: 3.61217px; height: 3.61217px; left: 36.1467%; top: 11.0971%; animation: 19.6091s linear 0s infinite normal none running float; opacity: 0.104381;"></div><div class="dust-particle" style="width: 8.74659px; height: 8.74659px; left: 19.4316%; top: 55.7378%; animation: 17.0309s linear 0s infinite normal none running float; opacity: 0.034172;"></div><div class="dust-particle" style="width: 8.88186px; height: 8.88186px; left: 93.3125%; top: 18.3718%; animation: 17.3966s linear 0s infinite normal none running float; opacity: 0.371439;"></div><div class="dust-particle" style="width: 8.62258px; height: 8.62258px; left: 95.51%; top: 97.4355%; animation: 19.0957s linear 0s infinite normal none running float; opacity: 0.143699;"></div><div class="dust-particle" style="width: 3.42732px; height: 3.42732px; left: 17.7101%; top: 17.5364%; animation: 13.3664s linear 0s infinite normal none running float; opacity: 0.362853;"></div><div class="dust-particle" style="width: 7.35772px; height: 7.35772px; left: 86.768%; top: 39.4681%; animation: 16.8134s linear 0s infinite normal none running float; opacity: 0.132669;"></div><div class="dust-particle" style="width: 3.65744px; height: 3.65744px; left: 23.1487%; top: 15.9595%; animation: 16.7479s linear 0s infinite normal none running float; opacity: 0.346161;"></div><div class="dust-particle" style="width: 7.35374px; height: 7.35374px; left: 83.6372%; top: 46.946%; animation: 18.8007s linear 0s infinite normal none running float; opacity: 0.262006;"></div><div class="dust-particle" style="width: 6.92525px; height: 6.92525px; left: 0.316513%; top: 65.8566%; animation: 18.3795s linear 0s infinite normal none running float; opacity: 0.165203;"></div><div class="dust-particle" style="width: 8.44075px; height: 8.44075px; left: 72.2287%; top: 15.8418%; animation: 10.3413s linear 0s infinite normal none running float; opacity: 0.209376;"></div><div class="dust-particle" style="width: 8.22477px; height: 8.22477px; left: 2.46928%; top: 92.4115%; animation: 16.9214s linear 0s infinite normal none running float; opacity: 0.0399252;"></div><div class="dust-particle" style="width: 8.31871px; height: 8.31871px; left: 53.0863%; top: 63.7278%; animation: 10.8932s linear 0s infinite normal none running float; opacity: 0.106251;"></div><div class="dust-particle" style="width: 5.75352px; height: 5.75352px; left: 77.9254%; top: 49.3231%; animation: 15.6107s linear 0s infinite normal none running float; opacity: 0.244148;"></div><div class="dust-particle" style="width: 7.66274px; height: 7.66274px; left: 88.8215%; top: 15.7839%; animation: 18.0493s linear 0s infinite normal none running float; opacity: 0.26445;"></div><div class="dust-particle" style="width: 8.71128px; height: 8.71128px; left: 61.1919%; top: 39.6799%; animation: 18.1379s linear 0s infinite normal none running float; opacity: 0.0240058;"></div><div class="dust-particle" style="width: 4.02821px; height: 4.02821px; left: 75.0945%; top: 13.0028%; animation: 13.9364s linear 0s infinite normal none running float; opacity: 0.370218;"></div><div class="dust-particle" style="width: 3.01904px; height: 3.01904px; left: 9.07526%; top: 71.2346%; animation: 11.4759s linear 0s infinite normal none running float; opacity: 0.368152;"></div><div class="dust-particle" style="width: 4.83825px; height: 4.83825px; left: 34.6496%; top: 1.62261%; animation: 10.0421s linear 0s infinite normal none running float; opacity: 0.0522552;"></div><div class="dust-particle" style="width: 7.72632px; height: 7.72632px; left: 43.3485%; top: 72.1188%; animation: 11.7626s linear 0s infinite normal none running float; opacity: 0.0811167;"></div><div class="dust-particle" style="width: 7.41143px; height: 7.41143px; left: 57.6457%; top: 57.3742%; animation: 14.9795s linear 0s infinite normal none running float; opacity: 0.111539;"></div><div class="dust-particle" style="width: 5.47616px; height: 5.47616px; left: 55.6533%; top: 4.99879%; animation: 17.6204s linear 0s infinite normal none running float; opacity: 0.266142;"></div><div class="dust-particle" style="width: 3.59913px; height: 3.59913px; left: 49.1294%; top: 92.917%; animation: 15.3848s linear 0s infinite normal none running float; opacity: 0.215558;"></div><div class="dust-particle" style="width: 7.94554px; height: 7.94554px; left: 19.1292%; top: 12.7153%; animation: 11.0294s linear 0s infinite normal none running float; opacity: 0.26118;"></div><div class="dust-particle" style="width: 7.19351px; height: 7.19351px; left: 90.07%; top: 28.3246%; animation: 15.3645s linear 0s infinite normal none running float; opacity: 0.285921;"></div><div class="dust-particle" style="width: 8.94816px; height: 8.94816px; left: 54.6247%; top: 79.5097%; animation: 10.7129s linear 0s infinite normal none running float; opacity: 0.0608916;"></div></div>
+<!-- Unified Duel Header -->
+<header class="w-full sticky top-0 z-50 bg-surface border-b-2 border-outline-variant shadow-md">
+<div class="max-w-lg mx-auto px-4 h-20 flex items-center justify-between gap-2"><!-- Left: Player Info -->
+<div class="flex items-center gap-2 flex-1">
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img alt="Player Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5iaHbHjVg2uKntSp8JLm8E6axr0BxkluB-Z769LctYmV_aYpO3DidGR1-8WlDX8d6GafzD1uF46QY7CW287CzKXFCHe9SDraASNaVmo2gMfAkvFyKPXN2ZWAF_aNC4js5jfprn-H06DJ0t1t6_fxADjCQEnt7KPXk51Ty4NCa7sHBhBfMOfnLyy_SQ4mA67TUeEmVrdvEg0LcKJSi4pHZHtVqN8KLEPaMpuI7xVeqtswQKEhD6iNQaeSLXBcHmCyS6YkRNbhKS85T">
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] font-label-bold text-on-surface-variant leading-none mb-1">YOU</span>
+<div class="grid grid-cols-5 gap-0.5">
+<div class="w-2 h-2 rounded-full bg-tile-correct"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+</div>
+<!-- Center: Timer (Clickable for Surrender) -->
+<div class="flex flex-col items-center cursor-pointer" onclick="document.getElementById('surrender-modal').classList.remove('hidden')">
+<div class="text-on-tertiary-container flex flex-col items-center flex-row gap-1 text-on-surface-variant" id="timer-box">
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="font-headline-lg-mobile text-xl tabular-nums leading-none" id="game-timer">00:56</span>
+</div>
+
+</div>
+<!-- Right: Opponent Info -->
+<div class="flex items-center justify-end gap-2 flex-1">
+<div class="flex flex-col items-end">
+<span class="text-[9px] font-label-bold text-on-surface-variant leading-none mb-1">PLAYER_X</span>
+<div class="grid grid-cols-5 gap-0.5">
+<div class="w-2 h-2 rounded-full bg-tile-correct"></div>
+<div class="w-2 h-2 rounded-full bg-tile-present"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+<div class="relative">
+<div class="w-10 h-10 rounded-full border-2 border-outline-variant overflow-hidden">
+<img alt="Opponent Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEQ4Y4Nc0CP7Z28vU9B8ToopVJ12UgJPnxcSniDfJ_bzxGl9PPes4fvOpQUb0Fj4jo97h-91jC1IiZoqmqY2N-czHdLZqcWJgY7A2K7hv03ZLfO_-c1igRMU-5S_K5BEHXMFMTjBemS5ePw874BEp364IVcsVXx9ZJyiQc2P1EEjfmKRxhBesW36jR9RhC9HoooKOfGrUvDdiIq6Yix7rFq3839rU4cG4XEWzCtMzCg4xYyQt4LOClSnwp33OjbL-zQ15gv_ktYYMt">
+</div>
+<div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-secondary rounded-full border-2 border-surface-container-high"></div>
+</div>
+</div></div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center max-w-lg mx-auto w-full px-container-padding overflow-hidden">
+<!-- Main 5x6 Word Grid -->
+<section class="w-full py-4 flex justify-center">
+<div class="grid grid-rows-6 grid-cols-5 gap-2 w-full max-w-[320px]">
+<!-- Row 1: Active Guess Example -->
+<div class="tile-correct-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl">A</div>
+<div class="tile-empty-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl">D</div>
+<div class="tile-present-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl">V</div>
+<div class="tile-empty-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl">E</div>
+<div class="tile-empty-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl">N</div>
+<!-- Row 2: Cursor Example -->
+<div class="tile-empty-style rounded-lg aspect-square flex items-center justify-center font-tile-text text-2xl border-primary ring-2 ring-primary/20">T</div>
+<div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div>
+<!-- Empty Rows 3-6 -->
+<div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div>
+<div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div><div class="tile-empty-style rounded-lg aspect-square"></div>
+</div>
+</section>
+</main>
+<!-- Bottom Interface Area -->
+<div class="sticky bottom-0 w-full z-50">
+<!-- Power-ups Tray (Minimal) -->
+
+<!-- Custom Tactile Keyboard -->
+<div class="bg-surface-container border-t-2 border-outline-variant p-2 pb-6 shadow-[0_-8px_16px_rgba(0,0,0,0.05)]">
+<div class="max-w-md mx-auto grid gap-1.5">
+<!-- Row 1 -->
+<div class="flex justify-center gap-1 h-12">
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">Q</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">W</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">E</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">R</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">T</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">Y</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">U</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">I</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">O</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">P</button>
+</div>
+<!-- Row 2 -->
+<div class="flex justify-center gap-1 h-12 px-3">
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">A</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">S</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">D</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">F</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">G</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">H</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">J</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">K</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">L</button>
+</div>
+<!-- Row 3 -->
+<div class="flex justify-center gap-1 h-12">
+<button class="tactile-button w-12 bg-surface-dim rounded-lg flex items-center justify-center border-b-[3px] border-outline-variant active:translate-y-[2px] active:border-b-0">
+<span class="material-symbols-outlined text-xl">backspace</span>
+</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">Z</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">X</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">C</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">V</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">B</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">N</button>
+<button class="tactile-button flex-1 bg-surface-container-lowest rounded-lg font-label-bold text-on-surface border-b-[3px] border-outline active:translate-y-[2px] active:border-b-0">M</button>
+<button class="tactile-button px-5 bg-primary text-white rounded-lg font-label-bold border-b-[3px] border-primary-fixed-dim flex items-center justify-center uppercase text-xs">
+                    ENTER
+                </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+    // Timer Logic
+    let seconds = 90;
+    const timerEl = document.getElementById('game-timer');
+    const timerBox = document.getElementById('timer-box');
+    const pointsEl = document.getElementById('potential-points');
+    let potentialPoints = 2000;
+
+    const timerInterval = setInterval(() => {
+        seconds--;
+        if (seconds <= 0) {
+            clearInterval(timerInterval);
+            seconds = 0;
+        }
+
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        // Score decay simulation
+        potentialPoints = Math.max(500, potentialPoints - 2);
+        pointsEl.textContent = potentialPoints;
+
+        // Urgent state visual feedback
+        if (seconds < 15) {
+            timerBox.classList.remove('bg-tertiary-container');
+            timerBox.classList.add('bg-error-container', 'text-on-error-container', 'animate-pulse');
+        }
+    }, 1000);
+
+    // Particle background logic
+    const dustLayer = document.getElementById('dust-layer');
+    for(let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'dust-particle';
+        const size = Math.random() * 6 + 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+        particle.style.opacity = Math.random() * 0.4;
+        dustLayer.appendChild(particle);
+    }
+</script>
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-surface/40 backdrop-blur-sm hidden" id="surrender-modal">
+<div class="bg-surface-container-low rounded-[24px] p-6 max-w-xs w-full shadow-xl border-2 border-outline-variant">
+<h3 class="font-headline-lg text-xl text-center mb-2">Surrender?</h3>
+<p class="text-on-surface-variant text-center text-sm mb-6">Giving up now will count as a defeat and you'll lose your potential points.</p>
+<div class="flex flex-col gap-2">
+<button class="tactile-button w-full py-3 bg-primary text-white rounded-xl font-label-bold uppercase text-xs border-b-[3px] border-primary-fixed-dim">Yes, Surrender</button>
+<button class="tactile-button w-full py-3 bg-surface-container-highest text-on-surface rounded-xl font-label-bold uppercase text-xs border-b-[3px] border-outline-variant" onclick="document.getElementById('surrender-modal').classList.add('hidden')">Keep Playing</button>
+</div>
+</div>
+</div>
+
+
+
+
+
+</body></html>
