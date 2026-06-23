@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Saga - Onboarding</title>
+<!-- Google Fonts: Quicksand for Headline/Display, Be Vietnam Pro for Body -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-container-low": "#eff4ff",
+                  "on-tertiary": "#ffffff",
+                  "surface-tint": "#6042d6",
+                  "primary-fixed-dim": "#cabeff",
+                  "on-secondary-fixed": "#00210c",
+                  "surface-variant": "#d3e4fe",
+                  "on-primary-container": "#d8ceff",
+                  "tertiary-fixed": "#ffe084",
+                  "surface-container-high": "#dce9ff",
+                  "secondary-fixed": "#6bfe9c",
+                  "tile-correct": "#6AAA64",
+                  "on-surface-variant": "#484554",
+                  "surface-offwhite": "#F8FAFC",
+                  "inverse-primary": "#cabeff",
+                  "primary": "#451ebb",
+                  "surface-dim": "#cbdbf5",
+                  "secondary": "#006d37",
+                  "outline-variant": "#c9c4d7",
+                  "on-tertiary-fixed": "#231b00",
+                  "surface-container-lowest": "#ffffff",
+                  "error-container": "#ffdad6",
+                  "surface-container-highest": "#d3e4fe",
+                  "background": "#f8f9ff",
+                  "surface-bright": "#f8f9ff",
+                  "secondary-container": "#6bfe9c",
+                  "tertiary-fixed-dim": "#eec209",
+                  "tile-present": "#C9B458",
+                  "outline": "#797586",
+                  "on-secondary-fixed-variant": "#005228",
+                  "action-blue": "#3498DB",
+                  "primary-fixed": "#e6deff",
+                  "secondary-fixed-dim": "#4ae183",
+                  "on-error-container": "#93000a",
+                  "tertiary-container": "#cea700",
+                  "on-secondary": "#ffffff",
+                  "error": "#ba1a1a",
+                  "on-secondary-container": "#00743a",
+                  "on-surface": "#0b1c30",
+                  "surface": "#f8f9ff",
+                  "inverse-on-surface": "#eaf1ff",
+                  "surface-container": "#e5eeff",
+                  "primary-container": "#5d3fd3",
+                  "on-primary-fixed": "#1c0062",
+                  "on-error": "#ffffff",
+                  "on-primary-fixed-variant": "#4723be",
+                  "tertiary": "#735c00",
+                  "on-tertiary-fixed-variant": "#574500",
+                  "inverse-surface": "#213145",
+                  "on-primary": "#ffffff",
+                  "on-tertiary-container": "#4e3e00",
+                  "on-background": "#0b1c30"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "tile-gap": "8px",
+                  "stack-lg": "40px",
+                  "container-padding": "20px",
+                  "stack-sm": "12px",
+                  "stack-md": "24px"
+          },
+          "fontFamily": {
+                  "display-hero": ["Quicksand"],
+                  "body-md": ["Be Vietnam Pro"],
+                  "body-lg": ["Be Vietnam Pro"],
+                  "tile-text": ["Quicksand"],
+                  "label-bold": ["Be Vietnam Pro"],
+                  "headline-lg-mobile": ["Quicksand"],
+                  "headline-lg": ["Quicksand"]
+          },
+          "fontSize": {
+                  "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                  "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                  "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                  "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .bubbly-button {
+      transition: all 0.1s ease-out;
+      box-shadow: 0 4px 0 #341a8a; /* Darker shade of primary #451ebb */
+    }
+    .bubbly-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #341a8a;
+    }
+
+    .tile-shadow {
+      box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+    }
+
+    .step-content {
+      display: none;
+    }
+    .step-content.active {
+      display: flex;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+    .progress-dot.active {
+      background: #ffffff;
+      width: 24px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-hidden h-screen w-full flex flex-col items-center justify-center">
+<!-- Background Image Layer -->
+<div class="fixed inset-0 z-[-1] bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc')"></div>
+<div class="fixed inset-0 z-[-1] bg-gradient-to-b from-transparent via-transparent to-black/40"></div>
+<!-- Onboarding Container -->
+<main class="w-full max-w-md h-full flex flex-col px-container-padding py-stack-lg relative">
+<!-- Header: Hidden on transactional screens usually, but we need branding here -->
+<header class="flex justify-center items-center py-6">
+<h1 class="font-display-hero text-headline-lg-mobile text-white drop-shadow-lg tracking-tight">WORD SAGA</h1>
+</header>
+<div class="flex-grow relative mt-4">
+<!-- Step 1: Welcome -->
+<section class="step-content active flex-col items-center justify-center h-full text-center space-y-8" id="step-1">
+<div class="w-48 h-48 rounded-3xl overflow-hidden shadow-2xl animate-pulse-slow">
+<img alt="Word Saga Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuL2cD4fRPcx80vYK6PvCeplt7wPBObNt7q4ueNXdmH5xHQYUG8H2d_IzriyaxND0z57xUZfKU71_Ve5fiGwIJDaheuSClryejEvPeZfks6GmIJy1rfyFqpeVkLGRERQWMQdnXtD2TyS8oTAOwXbCGQF0x07ToPhU5kzpvIZJuuOJFARJAODxO3_B126BaZ4eSICcs2aowr6bMyyn160IijPN9TTDHj-UgFtysh5B2kkTM7PAEdykeQK2bN"/>
+</div>
+<div class="glass-card rounded-2xl p-stack-md space-y-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Embark on Your Quest</h2>
+<p class="text-body-md text-on-surface-variant">The ancient forest holds secrets that only a true Wordsmith can uncover. Solve the puzzles, unlock the lore.</p>
+</div>
+<button class="bubbly-button w-full py-4 px-8 bg-primary text-white rounded-xl font-label-bold text-label-bold uppercase tracking-wider flex items-center justify-center gap-2" onclick="nextStep(2)">
+          Start Quest
+          <span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</section>
+<!-- Step 2: Rules -->
+<section class="step-content flex-col items-center justify-start h-full text-center space-y-6 pt-4" id="step-2">
+<div class="glass-card rounded-2xl p-stack-md w-full">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-6">Master the Runes</h2>
+<!-- Visual Word Example -->
+<div class="flex justify-center gap-tile-gap mb-8">
+<div class="w-14 h-14 bg-tile-correct text-white rounded-lg flex items-center justify-center font-tile-text text-tile-text tile-shadow">Q</div>
+<div class="w-14 h-14 bg-tile-present text-white rounded-lg flex items-center justify-center font-tile-text text-tile-text tile-shadow">U</div>
+<div class="w-14 h-14 bg-outline-variant text-white rounded-lg flex items-center justify-center font-tile-text text-tile-text tile-shadow">E</div>
+<div class="w-14 h-14 bg-surface text-on-surface border-2 border-outline rounded-lg flex items-center justify-center font-tile-text text-tile-text">S</div>
+<div class="w-14 h-14 bg-surface text-on-surface border-2 border-outline rounded-lg flex items-center justify-center font-tile-text text-tile-text">T</div>
+</div>
+<div class="space-y-4 text-left">
+<div class="flex items-start gap-4">
+<div class="w-4 h-4 bg-tile-correct rounded-full mt-1.5 shrink-0"></div>
+<p class="text-body-md text-on-surface-variant"><span class="font-bold text-on-surface">Emerald:</span> Letter is in the word and in the correct spot.</p>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-4 h-4 bg-tile-present rounded-full mt-1.5 shrink-0"></div>
+<p class="text-body-md text-on-surface-variant"><span class="font-bold text-on-surface">Amber:</span> Letter is in the word but in the wrong spot.</p>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-4 h-4 bg-outline-variant rounded-full mt-1.5 shrink-0"></div>
+<p class="text-body-md text-on-surface-variant"><span class="font-bold text-on-surface">Slate:</span> Letter is not in the word at all.</p>
+</div>
+</div>
+</div>
+<button class="bubbly-button w-full py-4 px-8 bg-primary text-white rounded-xl font-label-bold text-label-bold uppercase tracking-wider" onclick="nextStep(3)">
+          Next Step
+        </button>
+</section>
+<!-- Step 3: Challenges -->
+<section class="step-content flex-col items-center justify-start h-full text-center space-y-6 pt-4" id="step-3">
+<div class="glass-card rounded-2xl p-stack-md w-full">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-4">Trials of the Forest</h2>
+<p class="text-body-md text-on-surface-variant mb-8">Every level presents new obstacles. Prove your wit against the odds.</p>
+<div class="grid grid-cols-1 gap-4">
+<!-- Timed Challenge -->
+<div class="flex items-center p-4 bg-surface-container-low rounded-xl border-2 border-outline-variant">
+<div class="bg-action-blue/20 p-3 rounded-lg mr-4">
+<span class="material-symbols-outlined text-action-blue" data-icon="timer">timer</span>
+</div>
+<div class="text-left">
+<h3 class="font-label-bold text-on-surface">Timed Challenges</h3>
+<p class="text-xs text-on-surface-variant">Race against the moon to find the word.</p>
+</div>
+</div>
+<!-- Limited Guesses -->
+<div class="flex items-center p-4 bg-surface-container-low rounded-xl border-2 border-outline-variant">
+<div class="bg-error/20 p-3 rounded-lg mr-4">
+<span class="material-symbols-outlined text-error" data-icon="heart_minus">heart_minus</span>
+</div>
+<div class="text-left">
+<h3 class="font-label-bold text-on-surface">Limited Guesses</h3>
+<p class="text-xs text-on-surface-variant">Every failure drains your magic energy.</p>
+</div>
+</div>
+<!-- Trophies -->
+<div class="flex items-center p-4 bg-surface-container-low rounded-xl border-2 border-outline-variant">
+<div class="bg-tertiary-container/20 p-3 rounded-lg mr-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="military_tech">military_tech</span>
+</div>
+<div class="text-left">
+<h3 class="font-label-bold text-on-surface">Earn Trophies</h3>
+<p class="text-xs text-on-surface-variant">Collect ancient relics for your hall.</p>
+</div>
+</div>
+</div>
+</div>
+<button class="bubbly-button w-full py-4 px-8 bg-primary text-white rounded-xl font-label-bold text-label-bold uppercase tracking-wider" onclick="nextStep(4)">
+          Got it!
+        </button>
+</section>
+<!-- Step 4: Final CTA -->
+<section class="step-content flex-col items-center justify-center h-full text-center space-y-8" id="step-4">
+<div class="relative">
+<!-- Pulse animation for the last card -->
+<div class="absolute inset-0 bg-secondary/30 blur-3xl rounded-full scale-150 animate-pulse"></div>
+<div class="glass-card rounded-3xl p-stack-md relative z-10 space-y-4">
+<span class="material-symbols-outlined text-6xl text-secondary" data-icon="forest">forest</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">The Path is Clear</h2>
+<p class="text-body-md text-on-surface-variant">Nature's puzzles await your command. Will you master the saga?</p>
+</div>
+</div>
+<div class="w-full space-y-4">
+<button class="bubbly-button w-full py-5 px-8 bg-secondary text-white rounded-2xl font-label-bold text-label-bold uppercase tracking-widest text-lg shadow-[0_6px_0_#005228]">
+            Enter the Forest
+          </button>
+<p class="text-white/60 text-xs">By entering, you agree to the Forest Laws.</p>
+</div>
+</section>
+</div>
+<!-- Progress Dots Container -->
+<footer class="flex justify-center items-center gap-3 py-8">
+<div class="progress-dot active" id="dot-1"></div>
+<div class="progress-dot" id="dot-2"></div>
+<div class="progress-dot" id="dot-3"></div>
+<div class="progress-dot" id="dot-4"></div>
+</footer>
+</main>
+<script>
+    function nextStep(stepNumber) {
+      // Hide all steps
+      document.querySelectorAll('.step-content').forEach(step => {
+        step.classList.remove('active');
+      });
+
+      // Show current step
+      document.getElementById('step-' + stepNumber).classList.add('active');
+
+      // Update dots
+      document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+        if (index + 1 === stepNumber) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Add some random "floating" sparks effect via JS for immersion
+    function createSpark() {
+      const spark = document.createElement('div');
+      spark.className = 'fixed pointer-events-none rounded-full bg-tertiary-fixed blur-[2px] opacity-0 z-0';
+      const size = Math.random() * 4 + 2;
+      spark.style.width = size + 'px';
+      spark.style.height = size + 'px';
+      spark.style.left = Math.random() * 100 + 'vw';
+      spark.style.top = Math.random() * 100 + 'vh';
+
+      document.body.appendChild(spark);
+
+      const duration = Math.random() * 3000 + 2000;
+      spark.animate([
+        { opacity: 0, transform: 'translateY(0)' },
+        { opacity: 0.6, transform: 'translateY(-50px)' },
+        { opacity: 0, transform: 'translateY(-100px)' }
+      ], {
+        duration: duration,
+        easing: 'ease-out'
+      }).onfinish = () => spark.remove();
+    }
+
+    setInterval(createSpark, 400);
+  </script>
+</body></html>

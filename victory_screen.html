@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Word Saga - Level Complete</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=Quicksand:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffe084",
+                        "secondary-fixed-dim": "#4ae183",
+                        "on-primary-fixed-variant": "#4723be",
+                        "on-error": "#ffffff",
+                        "outline": "#797586",
+                        "on-background": "#0b1c30",
+                        "surface-offwhite": "#F8FAFC",
+                        "surface-tint": "#6042d6",
+                        "tertiary": "#735c00",
+                        "surface-container": "#e5eeff",
+                        "on-primary-container": "#d8ceff",
+                        "primary-fixed": "#e6deff",
+                        "on-secondary-fixed": "#00210c",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#6bfe9c",
+                        "tertiary-fixed-dim": "#eec209",
+                        "secondary": "#006d37",
+                        "on-surface-variant": "#484554",
+                        "on-tertiary-container": "#4e3e00",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-fixed": "#1c0062",
+                        "on-secondary": "#ffffff",
+                        "action-blue": "#3498DB",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-fixed": "#231b00",
+                        "on-secondary-fixed-variant": "#005228",
+                        "secondary-container": "#6bfe9c",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#cabeff",
+                        "primary-fixed-dim": "#cabeff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00743a",
+                        "primary-container": "#5d3fd3",
+                        "inverse-surface": "#213145",
+                        "surface-container-highest": "#d3e4fe",
+                        "tile-correct": "#6AAA64",
+                        "primary": "#451ebb",
+                        "tertiary-container": "#cea700",
+                        "error-container": "#ffdad6",
+                        "tile-present": "#C9B458",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "outline-variant": "#c9c4d7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#574500"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "stack-lg": "40px",
+                        "stack-sm": "12px",
+                        "tile-gap": "8px",
+                        "stack-md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Quicksand"],
+                        "label-bold": ["Be Vietnam Pro"],
+                        "tile-text": ["Quicksand"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "display-hero": ["Quicksand"],
+                        "headline-lg": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .material-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        .victory-backdrop {
+            background: linear-gradient(rgba(11, 28, 48, 0.85), rgba(69, 30, 187, 0.4));
+            backdrop-filter: blur(8px);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+        }
+        .pulse-animate {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .sparkle-slow {
+            animation: bounce 3s infinite ease-in-out;
+        }
+        @keyframes star-pop {
+            0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+            70% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        .animate-star-1 { animation: star-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .animate-star-2 { animation: star-pop 0.5s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+        .animate-star-3 { animation: star-pop 0.5s 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+
+        .bubbly-button {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.2), inset 0 -4px 0 0 rgba(0,0,0,0.2);
+            transition: all 0.1s;
+        }
+        .bubbly-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 rgba(0,0,0,0.2), inset 0 0 0 0 rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-on-background min-h-screen flex items-center justify-center font-body-md text-on-surface overflow-hidden">
+<!-- Background Forest Peeking Through -->
+<div class="fixed inset-0 z-0">
+<img alt="Magical Forest" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc"/>
+<div class="absolute inset-0 victory-backdrop"></div>
+</div>
+<!-- Main Victory Overlay -->
+<main class="relative z-10 w-full max-w-md px-container-padding flex flex-col items-center text-center">
+<!-- Header -->
+<header class="mb-stack-lg">
+<h1 class="font-display-hero text-headline-lg-mobile md:text-display-hero text-on-primary drop-shadow-[0_0_15px_rgba(74,225,131,0.8)] tracking-wider">
+                LEVEL COMPLETE!
+            </h1>
+</header>
+<!-- Star Awards Area -->
+<div class="flex justify-center items-end gap-4 mb-stack-lg h-32 relative">
+<!-- Sparkles -->
+<span class="material-symbols-outlined absolute -top-4 left-1/4 text-tertiary-fixed text-4xl sparkle-slow">flare</span>
+<span class="material-symbols-outlined absolute top-4 right-1/4 text-secondary-fixed text-2xl sparkle-slow" style="animation-delay: 1s;">auto_awesome</span>
+<!-- Stars -->
+<div class="animate-star-1">
+<span class="material-symbols-outlined material-fill text-6xl text-tertiary-fixed drop-shadow-[0_0_10px_rgba(255,224,132,0.8)]">star</span>
+</div>
+<div class="animate-star-2 -translate-y-4">
+<span class="material-symbols-outlined material-fill text-8xl text-tertiary-fixed drop-shadow-[0_0_20px_rgba(255,224,132,1)]">star</span>
+</div>
+<div class="animate-star-3">
+<span class="material-symbols-outlined text-6xl text-on-primary opacity-30">star</span>
+</div>
+</div>
+<!-- Progress and Rewards Glass Card -->
+<div class="glass-card w-full rounded-xl p-stack-md flex flex-col gap-stack-sm mb-stack-md">
+<!-- XP Progress -->
+<div class="text-left">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-bold text-label-bold text-primary-fixed uppercase">XP EARNED: +125</span>
+<span class="font-label-bold text-label-bold text-secondary-fixed">Level up!</span>
+</div>
+<div class="h-4 w-full bg-on-background/30 rounded-full overflow-hidden border border-white/10">
+<div class="h-full bg-gradient-to-r from-primary-container to-action-blue w-[92%] relative">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/40 blur-sm"></div>
+</div>
+</div>
+</div>
+<!-- Coin Reward -->
+<div class="flex items-center justify-center gap-2 py-2">
+<span class="material-symbols-outlined material-fill text-tertiary-fixed text-3xl drop-shadow-[0_0_8px_rgba(255,224,132,0.6)]">monetization_on</span>
+<span class="font-headline-lg text-headline-lg text-on-primary">+50</span>
+</div>
+</div>
+<!-- Milestone Badge -->
+<div class="glass-card w-full rounded-xl p-stack-sm flex items-center gap-4 mb-stack-lg border-l-4 border-l-secondary-fixed">
+<div class="w-16 h-16 bg-on-background/50 rounded-lg flex items-center justify-center p-2 border border-white/10">
+<img alt="Wordsmith Badge Icon" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuL2cD4fRPcx80vYK6PvCeplt7wPBObNt7q4ueNXdmH5xHQYUG8H2d_IzriyaxND0z57xUZfKU71_Ve5fiGwIJDaheuSClryejEvPeZfks6GmIJy1rfyFqpeVkLGRERQWMQdnXtD2TyS8oTAOwXbCGQF0x07ToPhU5kzpvIZJuuOJFARJAODxO3_B126BaZ4eSICcs2aowr6bMyyn160IijPN9TTDHj-UgFtysh5B2kkTM7PAEdykeQK2bN"/>
+</div>
+<div class="text-left">
+<p class="font-label-bold text-label-bold text-outline-variant uppercase">New Badge Unlocked</p>
+<h3 class="font-headline-lg text-body-lg text-on-primary">THE WORDSMITH</h3>
+</div>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-secondary-fixed text-2xl">verified</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-4">
+<button class="bubbly-button w-full py-4 bg-secondary-fixed text-on-secondary-fixed font-label-bold text-lg rounded-xl pulse-animate uppercase tracking-widest flex items-center justify-center gap-2">
+                Continue
+                <span class="material-symbols-outlined">play_arrow</span>
+</button>
+<button class="w-full py-3 border-2 border-primary-fixed text-primary-fixed font-label-bold text-label-bold rounded-xl bg-white/5 hover:bg-white/10 transition-colors uppercase flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">share</span>
+                Share Result
+            </button>
+</div>
+</main>
+<!-- Floating Particles Script -->
+<script>
+        // Simple micro-interaction for the stars
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('.animate-star-1, .animate-star-2');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', () => {
+                    star.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                star.addEventListener('mouseout', () => {
+                    star.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+        });
+    </script>
+</body></html>

@@ -5,10 +5,18 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flame/game.dart';
 
 import 'game.dart';
+import 'screens/splash_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/map_screen.dart';
 import 'screens/game_screen.dart';
 import 'screens/duel_screen.dart';
+import 'screens/victory_screen.dart';
+import 'screens/word_info_screen.dart';
+import 'screens/library_screen.dart';
+import 'screens/achievements_screen.dart';
+import 'screens/daily_rewards_screen.dart';
+import 'screens/profile_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,13 +44,21 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF5D3FD3)),
         useMaterial3: true,
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/splash': (context) => const SplashScreen(),
+        '/onboarding': (context) => const OnboardingScreen(),
+        '/home': (context) => const HomeScreen(),
         '/map': (context) => const MapScreen(),
         '/game': (context) => const GameScreenUI(),
         '/duel': (context) => const DuelScreen(),
         '/duel_match': (context) => const GameWrapper(),
+        '/victory': (context) => const VictoryScreen(),
+        '/word_info': (context) => const WordInfoScreen(),
+        '/library': (context) => const LibraryScreen(),
+        '/achievements': (context) => const AchievementsView(),
+        '/daily_rewards': (context) => const DailyRewardsView(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }

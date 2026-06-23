@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adventure Settings</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c9c4d7",
+                    "on-surface": "#0b1c30",
+                    "tile-present": "#C9B458",
+                    "tertiary-container": "#cea700",
+                    "on-background": "#0b1c30",
+                    "on-primary-fixed": "#1c0062",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed": "#231b00",
+                    "secondary-container": "#6bfe9c",
+                    "on-primary-container": "#d8ceff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "tile-correct": "#6AAA64",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-variant": "#d3e4fe",
+                    "primary": "#451ebb",
+                    "on-primary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed": "#6bfe9c",
+                    "on-primary-fixed-variant": "#4723be",
+                    "secondary-fixed-dim": "#4ae183",
+                    "outline": "#797586",
+                    "tertiary": "#735c00",
+                    "surface-tint": "#6042d6",
+                    "inverse-surface": "#213145",
+                    "inverse-primary": "#cabeff",
+                    "on-secondary-container": "#00743a",
+                    "on-error": "#ffffff",
+                    "secondary": "#006d37",
+                    "tertiary-fixed": "#ffe084",
+                    "tertiary-fixed-dim": "#eec209",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "action-blue": "#3498DB",
+                    "on-tertiary-container": "#4e3e00",
+                    "primary-container": "#5d3fd3",
+                    "primary-fixed-dim": "#cabeff",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary": "#ffffff",
+                    "surface-offwhite": "#F8FAFC",
+                    "on-secondary-fixed-variant": "#005228",
+                    "on-surface-variant": "#484554",
+                    "surface-container": "#e5eeff",
+                    "surface-bright": "#f8f9ff",
+                    "primary-fixed": "#e6deff",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "stack-lg": "40px",
+                    "tile-gap": "8px",
+                    "stack-sm": "12px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "tile-text": ["Quicksand"],
+                    "label-bold": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Quicksand"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-lg": ["Quicksand"],
+                    "display-hero": ["Quicksand"],
+                    "body-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-panel {
+            background: rgba(11, 28, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider {
+            background-color: #451ebb;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .tactile-button {
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+        }
+
+        .tactile-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Background Layer -->
+<div class="fixed inset-0 z-[-1]">
+<img alt="Background Magic Forest" class="w-full h-full object-cover scale-105 blur-[2px]" src="https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+<!-- Top App Bar -->
+<header class="bg-surface/80 dark:bg-surface-container-low/80 text-primary dark:text-primary-fixed font-headline-lg-mobile text-headline-lg-mobile docked full-width top-0 sticky backdrop-blur-xl border-b-2 border-outline-variant/30 shadow-sm flex justify-between items-center px-container-padding h-16 w-full z-50">
+<button class="material-symbols-outlined hover:bg-primary-container/20 dark:hover:bg-primary-fixed-dim/20 active:translate-y-0.5 transition-transform duration-150 p-2 rounded-full">arrow_back</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile">Adventure Settings</h1>
+<button class="material-symbols-outlined hover:bg-primary-container/20 dark:hover:bg-primary-fixed-dim/20 active:translate-y-0.5 transition-transform duration-150 p-2 rounded-full">account_circle</button>
+</header>
+<main class="flex-1 w-full max-w-2xl mx-auto px-container-padding py-stack-md space-y-stack-md pb-32">
+<!-- Profile Section -->
+<section class="glass-panel rounded-xl p-6 flex items-center space-x-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="relative">
+<div class="w-20 h-20 rounded-full border-4 border-secondary-container p-1 shadow-lg">
+<img class="w-full h-full object-cover rounded-full" data-alt="A portrait of a young adventurer with a friendly smile, wearing a leather explorer's hat and purple tunic. The art style is vibrant, high-quality digital illustration with magical lighting glowing in the background. The mood is heroic and enthusiastic, perfectly matching an adventure game theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ-VBmiuEjnoCb7Yy8-Hhi5M9NGz6goH2GkQGll40lmkTjAqkTW1Xr8DiiErcjHqsz1wNQjyT2UuarLgtL200nbG4--7ScvcGm3M5ZSVEYBgbsgoYKdxP5uI0SAjIiR0vJjr9O_MEiU-oqDWeNSN4fMIR-rO78hFqj1R1d5bnJ4pcJ9FGWbC29BfGlfzNmzcx61sAc2QAHf7qMPxnMGQPmdMkDrtVkOlrk2fVACh459wyNqaGAnCwcpG9uqKLl7tZEl9hEAXcy7cZn"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary text-[10px] font-bold px-2 py-1 rounded-full border-2 border-white">LVL 12</div>
+</div>
+<div class="flex-1">
+<h2 class="font-display-hero text-headline-lg text-primary dark:text-primary-fixed-dim leading-none">Adhnan</h2>
+<p class="font-label-bold text-label-bold text-on-surface-variant/80 mt-1 uppercase tracking-widest">Master Lexiconist</p>
+<div class="mt-3 w-full bg-surface-container rounded-full h-2 overflow-hidden border border-outline-variant/30">
+<div class="bg-secondary h-full rounded-full w-3/4 shadow-[0_0_8px_rgba(0,109,55,0.4)]"></div>
+</div>
+</div>
+</section>
+<!-- Settings List -->
+<section class="space-y-4">
+<h3 class="font-label-bold text-label-bold text-primary px-2 uppercase tracking-tighter">Audio &amp; Visuals</h3>
+<div class="glass-panel rounded-xl overflow-hidden divide-y divide-outline-variant/20">
+<!-- Music -->
+<div class="flex items-center justify-between p-4 hover:bg-white/10 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Music</span>
+</div>
+<label class="toggle-switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Sound Effects -->
+<div class="flex items-center justify-between p-4 hover:bg-white/10 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">volume_up</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Sound Effects</span>
+</div>
+<label class="toggle-switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Haptic -->
+<div class="flex items-center justify-between p-4 hover:bg-white/10 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">vibration</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Haptic Feedback</span>
+</div>
+<label class="toggle-switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Dark Mode -->
+<div class="flex items-center justify-between p-4 hover:bg-white/10 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-action-blue/20 flex items-center justify-center text-action-blue">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">Dark Mode</span>
+</div>
+<label class="toggle-switch">
+<input id="darkModeToggle" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+</section>
+<!-- Account Section -->
+<section class="space-y-4">
+<h3 class="font-label-bold text-label-bold text-error px-2 uppercase tracking-tighter">Danger Zone</h3>
+<div class="glass-panel border-error/20 rounded-xl p-4 space-y-4">
+<div class="flex items-start space-x-4">
+<div class="p-2 bg-error-container/20 rounded-lg text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface/80 leading-relaxed">
+                            Factory reset will erase all game progress, earned currency, and unlocked adventurers. This action cannot be undone.
+                        </p>
+</div>
+</div>
+<button class="tactile-button w-full py-4 bg-error text-on-error rounded-xl font-label-bold text-label-bold uppercase flex items-center justify-center space-x-2 shadow-[0_4px_0_0_#93000a] active:shadow-none hover:brightness-110">
+<span class="material-symbols-outlined">delete_forever</span>
+<span>Factory Reset</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="bg-surface/90 dark:bg-surface-container-highest/90 text-primary dark:text-primary-fixed fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 backdrop-blur-2xl border-t-2 border-outline-variant/20 shadow-[0_-4px_12px_rgba(0,0,0,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:opacity-100 transition-all active:translate-y-1" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-bold text-[10px]">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:opacity-100 transition-all active:translate-y-1" href="#">
+<span class="material-symbols-outlined">sports_esports</span>
+<span class="font-label-bold text-[10px]">Play</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:opacity-100 transition-all active:translate-y-1" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-bold text-[10px]">Store</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 shadow-[0_4px_0_0_#4723be] active:translate-y-1 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-[10px]">Settings</span>
+</a>
+</nav>
+<script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+        });
+
+        // Micro-interaction for tactile buttons
+        document.querySelectorAll('.tactile-button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const originalShadow = btn.style.boxShadow;
+                btn.style.transform = 'translateY(2px)';
+                btn.style.boxShadow = 'none';
+                setTimeout(() => {
+                    btn.style.transform = 'translateY(0)';
+                    btn.style.boxShadow = originalShadow;
+                }, 150);
+            });
+        });
+    </script>
+</body></html>

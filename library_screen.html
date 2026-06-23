@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Saga - Lexicon</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-card-glow {
+            border-color: rgba(93, 63, 211, 0.5);
+            box-shadow: 0 0 15px rgba(93, 63, 211, 0.4), inset 0 0 10px rgba(93, 63, 211, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#00743a",
+                        "primary-container": "#5d3fd3",
+                        "inverse-surface": "#213145",
+                        "surface-offwhite": "#F8FAFC",
+                        "on-secondary-fixed": "#00210c",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#484554",
+                        "tile-correct": "#6AAA64",
+                        "tertiary-fixed-dim": "#eec209",
+                        "action-blue": "#3498DB",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#6042d6",
+                        "surface-dim": "#cbdbf5",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#cabeff",
+                        "primary": "#451ebb",
+                        "inverse-primary": "#cabeff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006d37",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed": "#6bfe9c",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#ffe084",
+                        "on-primary-container": "#d8ceff",
+                        "tertiary": "#735c00",
+                        "outline": "#797586",
+                        "on-primary-fixed": "#1c0062",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary-fixed-dim": "#4ae183",
+                        "on-tertiary-fixed": "#231b00",
+                        "tile-present": "#C9B458",
+                        "on-secondary-fixed-variant": "#005228",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e5eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "on-primary-fixed-variant": "#4723be",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#6bfe9c",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed": "#e6deff",
+                        "tertiary-container": "#cea700",
+                        "outline-variant": "#c9c4d7",
+                        "surface-bright": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "tile-gap": "8px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "container-padding": "20px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Quicksand"],
+                        "display-hero": ["Quicksand"],
+                        "tile-text": ["Quicksand"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "label-bold": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-body-md text-on-background relative overflow-hidden">
+<!-- Full-bleed Background -->
+<div class="fixed inset-0 z-0">
+<img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc"/>
+<div class="absolute inset-0 bg-on-background/60 backdrop-blur-[2px]"></div>
+</div>
+<!-- Top Bar Component -->
+<header class="w-full top-0 sticky z-50 bg-transparent text-white border-b-2 border-white/10 shadow-sm flex items-center justify-between px-container-padding py-stack-sm">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined hover:bg-white/10 p-2 rounded-full transition-all active:scale-90" onclick="window.history.back()">
+                arrow_back_ios_new
+            </button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile tracking-tight">LEXICON</h1>
+</div>
+<div class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full border border-white/20">
+<span class="font-label-bold text-label-bold">1,250</span>
+<span class="text-lg">🪙</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 relative z-10 overflow-y-auto pb-32 px-container-padding">
+<!-- Search & Filter Section -->
+<div class="mt-stack-md flex flex-col gap-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-white/50">search</span>
+<input class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/40 focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Search learned words..." type="text"/>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-white/70 font-label-bold text-label-bold">84 WORDS DISCOVERED</p>
+<button class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10 hover:bg-white/20 transition-all group" id="favorite-toggle">
+<span class="material-symbols-outlined text-sm group-active:scale-125 transition-transform">bookmark</span>
+<span class="font-label-bold text-label-bold text-white">Favorites</span>
+</button>
+</div>
+</div>
+<!-- Word List -->
+<div class="mt-stack-md flex flex-col gap-tile-gap">
+<!-- Card 1 (Glow/Active State) -->
+<div class="glass-card glass-card-glow rounded-xl p-stack-sm flex flex-col relative group transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Aether</h2>
+<span class="bg-primary-container text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Noun</span>
+</div>
+<button class="material-symbols-outlined text-primary-container fill-icon text-2xl" style="font-variation-settings: 'FILL' 1;">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">The clear sky; the upper regions of air beyond the clouds.</p>
+<div class="mt-3 flex gap-2">
+<span class="text-[10px] text-white/40 bg-white/5 px-2 py-0.5 rounded border border-white/10">Common</span>
+<span class="text-[10px] text-white/40 bg-white/5 px-2 py-0.5 rounded border border-white/10">6 Letters</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl p-stack-sm flex flex-col relative transition-all hover:bg-white/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Luminous</h2>
+<span class="bg-secondary text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Adjective</span>
+</div>
+<button class="material-symbols-outlined text-white/30 text-2xl hover:text-white transition-colors">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">Radiating or reflecting light; shining; bright.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-xl p-stack-sm flex flex-col relative transition-all hover:bg-white/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Saga</h2>
+<span class="bg-primary-container text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Noun</span>
+</div>
+<button class="material-symbols-outlined text-white/30 text-2xl hover:text-white transition-colors">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">A long story of heroic achievement, especially a medieval prose narrative.</p>
+</div>
+<!-- Card 4 (Glow) -->
+<div class="glass-card glass-card-glow rounded-xl p-stack-sm flex flex-col relative transition-all hover:translate-y-[-2px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Rune</h2>
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Noun</span>
+</div>
+<button class="material-symbols-outlined text-primary-container fill-icon text-2xl" style="font-variation-settings: 'FILL' 1;">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">A letter of an ancient Germanic alphabet, often believed to have magic powers.</p>
+</div>
+<!-- Card 5 -->
+<div class="glass-card rounded-xl p-stack-sm flex flex-col relative transition-all hover:bg-white/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Whisper</h2>
+<span class="bg-action-blue text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Verb</span>
+</div>
+<button class="material-symbols-outlined text-white/30 text-2xl hover:text-white transition-colors">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">To speak very softly using one's breath without one's vocal cords.</p>
+</div>
+<!-- Card 6 -->
+<div class="glass-card rounded-xl p-stack-sm flex flex-col relative transition-all hover:bg-white/20">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h2 class="font-headline-lg text-headline-lg text-white font-headline-lg">Arcane</h2>
+<span class="bg-secondary text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full w-fit mt-1">Adjective</span>
+</div>
+<button class="material-symbols-outlined text-white/30 text-2xl hover:text-white transition-colors">
+                        bookmark
+                    </button>
+</div>
+<p class="text-white/80 mt-2 font-body-md text-body-md line-clamp-2">Understood by few; mysterious or secret.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Component -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-xl bg-surface-container-lowest/80 backdrop-blur-md border-t-2 border-outline-variant flex justify-around items-center px-4 pb-6 pt-2 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+<!-- Quest -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 transition-all hover:bg-surface-variant rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">map</span>
+<span class="font-label-bold text-label-bold mt-1">Quest</span>
+</a>
+<!-- Lexicon (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 translate-y-[-2px] shadow-[0_2px_0_0_#4723be] transition-all" href="#">
+<span class="material-symbols-outlined fill-icon" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-bold text-label-bold mt-1">Lexicon</span>
+</a>
+<!-- Store -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 transition-all hover:bg-surface-variant rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">storefront</span>
+<span class="font-label-bold text-label-bold mt-1">Store</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 transition-all hover:bg-surface-variant rounded-xl group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform">person</span>
+<span class="font-label-bold text-label-bold mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for favorite toggle
+        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
+            if (icon.innerText === 'bookmark') {
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isFilled = this.style.fontVariationSettings.includes("'FILL' 1");
+                    if (isFilled) {
+                        this.style.fontVariationSettings = "'FILL' 0";
+                        this.classList.remove('text-primary-container');
+                        this.classList.add('text-white/30');
+                        this.closest('.glass-card').classList.remove('glass-card-glow');
+                    } else {
+                        this.style.fontVariationSettings = "'FILL' 1";
+                        this.classList.add('text-primary-container');
+                        this.classList.remove('text-white/30');
+                        this.closest('.glass-card').classList.add('glass-card-glow');
+                    }
+                });
+            }
+        });
+
+        // Simple Search Simulation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h2').innerText.toLowerCase();
+                const def = card.querySelector('p').innerText.toLowerCase();
+                if (title.includes(term) || def.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

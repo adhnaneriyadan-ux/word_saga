@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Daily Rewards - Word Saga</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#231b00",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffe084",
+                        "on-tertiary-container": "#4e3e00",
+                        "action-blue": "#3498DB",
+                        "on-primary-fixed": "#1c0062",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary": "#451ebb",
+                        "primary-container": "#5d3fd3",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#6042d6",
+                        "secondary-fixed": "#6bfe9c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#484554",
+                        "primary-fixed": "#e6deff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container": "#e5eeff",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#4ae183",
+                        "outline-variant": "#c9c4d7",
+                        "tertiary-container": "#cea700",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed": "#00210c",
+                        "surface-offwhite": "#F8FAFC",
+                        "tertiary-fixed-dim": "#eec209",
+                        "surface": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "tile-present": "#C9B458",
+                        "secondary": "#006d37",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "tile-correct": "#6AAA64",
+                        "on-secondary-fixed-variant": "#005228",
+                        "tertiary": "#735c00",
+                        "secondary-container": "#6bfe9c",
+                        "on-secondary-container": "#00743a",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#4723be",
+                        "surface-variant": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#cabeff",
+                        "inverse-primary": "#cabeff",
+                        "on-primary-container": "#d8ceff",
+                        "outline": "#797586",
+                        "on-background": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "tile-gap": "8px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "display-hero": ["Quicksand"],
+                        "tile-text": ["Quicksand"],
+                        "label-bold": ["Be Vietnam Pro"],
+                        "headline-lg": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(107, 254, 156, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(107, 254, 156, 0);
+                transform: scale(1.02);
+            }
+        }
+
+        .bubbly-button {
+            position: relative;
+            box-shadow: 0 4px 0 0 #2a127a;
+            transition: all 0.1s ease;
+        }
+        .bubbly-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #2a127a;
+        }
+
+        .bubbly-button-green {
+            box-shadow: 0 4px 0 0 #005228;
+        }
+        .bubbly-button-green:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #005228;
+        }
+
+        .mystery-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-x-hidden m-0 p-0">
+<!-- Magical Forest Background Container -->
+<div class="fixed inset-0 z-0">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc')"></div>
+<div class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+</div>
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b-2 border-primary/10 dark:border-primary-fixed-dim/10 shadow-md flex justify-between items-center px-container-padding h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer active:scale-95 transition-transform">arrow_back</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim">Daily Rewards</h1>
+</div>
+<div class="flex items-center gap-2 bg-primary-container/20 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="font-label-bold text-label-bold text-on-primary-fixed-variant">1,250</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-24 pb-32 px-container-padding min-h-screen flex flex-col items-center">
+<!-- Header Text -->
+<div class="text-center mb-8">
+<h2 class="font-display-hero text-headline-lg-mobile text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] uppercase tracking-widest">DAILY QUESTS</h2>
+<p class="font-body-md text-white/80 mt-1">Claim your daily treasures!</p>
+</div>
+<!-- Bento Grid for Weekly Rewards -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-md">
+<!-- Day 1: Claimed -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center opacity-60 relative overflow-hidden">
+<span class="font-label-bold text-label-bold text-white/70 absolute top-2 left-2">DAY 1</span>
+<div class="w-12 h-12 flex items-center justify-center my-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+<p class="font-label-bold text-white text-body-md">50 Coins</p>
+<div class="mt-2 flex items-center gap-1 text-secondary-fixed">
+<span class="material-symbols-outlined text-body-md">check_circle</span>
+<span class="font-label-bold text-xs">CLAIMED</span>
+</div>
+</div>
+<!-- Day 2: Claimed -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center opacity-60 relative overflow-hidden">
+<span class="font-label-bold text-label-bold text-white/70 absolute top-2 left-2">DAY 2</span>
+<div class="w-12 h-12 flex items-center justify-center my-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+<p class="font-label-bold text-white text-body-md">100 Coins</p>
+<div class="mt-2 flex items-center gap-1 text-secondary-fixed">
+<span class="material-symbols-outlined text-body-md">check_circle</span>
+<span class="font-label-bold text-xs">CLAIMED</span>
+</div>
+</div>
+<!-- Day 3: Ready To Claim (Active) -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center relative overflow-hidden pulse-glow border-2 border-secondary-fixed-dim/50">
+<span class="font-label-bold text-label-bold text-secondary-fixed absolute top-2 left-2">DAY 3</span>
+<div class="w-16 h-16 flex items-center justify-center my-1">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-5xl" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+</div>
+<p class="font-label-bold text-white text-body-md leading-tight">Reveal Letter</p>
+<button class="mt-3 w-full bubbly-button bubbly-button-green bg-secondary text-white font-label-bold py-2 px-4 rounded-lg text-sm">
+                    CLAIM
+                </button>
+<div class="absolute inset-0 bg-secondary-fixed-dim/5 pointer-events-none"></div>
+</div>
+<!-- Day 4: Locked -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center relative overflow-hidden grayscale contrast-75">
+<span class="font-label-bold text-label-bold text-white/50 absolute top-2 left-2">DAY 4</span>
+<div class="w-12 h-12 flex items-center justify-center my-2">
+<span class="material-symbols-outlined text-white/50 text-4xl" style="font-variation-settings: 'FILL' 0;">monetization_on</span>
+</div>
+<p class="font-label-bold text-white/50 text-body-md">150 Coins</p>
+<span class="material-symbols-outlined text-white/30 absolute bottom-2 right-2 text-xl">lock</span>
+</div>
+<!-- Day 5: Locked -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center relative overflow-hidden grayscale contrast-75">
+<span class="font-label-bold text-label-bold text-white/50 absolute top-2 left-2">DAY 5</span>
+<div class="w-12 h-12 flex items-center justify-center my-2">
+<span class="material-symbols-outlined text-white/50 text-4xl">ink_eraser</span>
+</div>
+<p class="font-label-bold text-white/50 text-body-md leading-tight">Remove Wrong</p>
+<span class="material-symbols-outlined text-white/30 absolute bottom-2 right-2 text-xl">lock</span>
+</div>
+<!-- Day 6: Locked -->
+<div class="glass-card rounded-xl p-4 flex flex-col items-center text-center relative overflow-hidden grayscale contrast-75">
+<span class="font-label-bold text-label-bold text-white/50 absolute top-2 left-2">DAY 6</span>
+<div class="w-12 h-12 flex items-center justify-center my-2">
+<span class="material-symbols-outlined text-white/50 text-4xl" style="font-variation-settings: 'FILL' 0;">monetization_on</span>
+</div>
+<p class="font-label-bold text-white/50 text-body-md">200 Coins</p>
+<span class="material-symbols-outlined text-white/30 absolute bottom-2 right-2 text-xl">lock</span>
+</div>
+<!-- Day 7: Mystery Chest (Big Reward) -->
+<div class="glass-card rounded-xl p-6 col-span-2 md:col-span-3 flex flex-row items-center justify-between text-left relative overflow-hidden border-2 border-primary-fixed/30 mystery-shimmer">
+<div class="flex flex-col">
+<span class="font-label-bold text-primary-fixed mb-1">FINAL DAY REWARD</span>
+<h3 class="font-headline-lg-mobile text-white text-headline-lg-mobile">EPIC CHEST</h3>
+<p class="font-body-md text-white/80">500 Coins + Rare Items</p>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined text-7xl text-tertiary-fixed-dim drop-shadow-[0_0_15px_rgba(255,224,132,0.5)]" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<div class="absolute -top-1 -right-1 w-6 h-6 bg-error text-white rounded-full flex items-center justify-center text-[10px] font-bold">!</div>
+</div>
+<span class="material-symbols-outlined text-white/20 absolute bottom-4 right-4 text-2xl">lock</span>
+</div>
+</div>
+<!-- Bottom Action Tip -->
+<div class="mt-10 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed">info</span>
+<p class="font-label-bold text-white text-sm">Next reward available in 14h 22m</p>
+</div>
+</main>
+<!-- Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-lg border-t-2 border-primary/20 shadow-[0_-4px_12px_rgba(0,0,0,0.1)] flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-bold text-label-bold">Quests</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 translate-y-[-2px] shadow-[0_4px_0_0_#4723be] active:translate-y-0 active:shadow-none transition-all duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<span class="font-label-bold text-label-bold">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-bold text-label-bold">Shop</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for button feedback
+        document.querySelectorAll('.bubbly-button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translateY(2px)';
+                button.style.boxShadow = '0 2px 0 0 #005228';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'translateY(0px)';
+                button.style.boxShadow = '0 4px 0 0 #005228';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0px)';
+                button.style.boxShadow = '0 4px 0 0 #005228';
+            });
+        });
+
+        // Background floating particles simulation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'fixed bg-white rounded-full pointer-events-none opacity-40 blur-[1px]';
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.zIndex = '5';
+
+            const duration = Math.random() * 5 + 5;
+            particle.animate([
+                { transform: 'translate(0, 0) scale(1)', opacity: 0.4 },
+                { transform: `translate(${Math.random() * 100 - 50}px, -100px) scale(0.5)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'linear'
+            });
+
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), duration * 1000);
+        }
+
+        setInterval(createParticle, 500);
+    </script>
+</body></html>

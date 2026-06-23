@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Word Saga - Achievements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Be+Vietnam+Pro:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100..900&family=Quicksand:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#d8ceff",
+                        "tile-present": "#C9B458",
+                        "error": "#ba1a1a",
+                        "background": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cea700",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6bfe9c",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-primary-fixed": "#1c0062",
+                        "tile-correct": "#6AAA64",
+                        "on-tertiary-container": "#4e3e00",
+                        "on-primary-fixed-variant": "#4723be",
+                        "on-surface-variant": "#484554",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#00210c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#6bfe9c",
+                        "on-background": "#0b1c30",
+                        "surface-container-low": "#eff4ff",
+                        "secondary": "#006d37",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#231b00",
+                        "inverse-surface": "#213145",
+                        "surface-tint": "#6042d6",
+                        "tertiary-fixed": "#ffe084",
+                        "outline": "#797586",
+                        "inverse-primary": "#cabeff",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary-fixed-dim": "#eec209",
+                        "surface": "#f8f9ff",
+                        "primary": "#451ebb",
+                        "tertiary": "#735c00",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c9c4d7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#cabeff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-offwhite": "#F8FAFC",
+                        "primary-container": "#5d3fd3",
+                        "action-blue": "#3498DB",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-container": "#00743a",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#e6deff",
+                        "secondary-fixed-dim": "#4ae183",
+                        "surface-container-highest": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "tile-gap": "8px",
+                        "stack-lg": "40px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "container-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "tile-text": ["Quicksand"],
+                        "display-hero": ["Quicksand"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Quicksand"],
+                        "headline-lg-mobile": ["Quicksand"],
+                        "label-bold": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "tile-text": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+                        "display-hero": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .bubbly-button {
+            box-shadow: 0 4px 0 0 #3a168a;
+            transition: all 0.15s ease;
+        }
+        .bubbly-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #3a168a;
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(93, 63, 211, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen relative overflow-hidden">
+<!-- Immersive Background -->
+<div class="fixed inset-0 z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLuVkp9G1IKHPXLSeCSLFfMEJNf0Vd2i7yVl23Zg2tdoSBB5xXCkgz1iYO8eYwmYO3v75daaXRa70_gnsBB1leNzk7bHE-rwZeBO6DmAmyC62kTvDnIMFV0ceueAukQLmxNfeGmMbqCGCWfrPpnXMAcvemGgHV6PAKjDlUuMbDBxhrqq-6LMuqobp8yUajr5yTYzTXalMmYZlWcynhOzWVQwnAjJcLhEEWdmq1UGcTEFHP3q0XQ9cSo7Ayc')"></div>
+<div class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+</div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b-2 border-outline-variant dark:border-outline shadow-sm flex items-center justify-between px-container-padding h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed active:translate-y-0.5 transition-transform cursor-pointer">menu</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-display-hero text-primary dark:text-primary-fixed text-glow">Word Saga</h1>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed active:translate-y-0.5 transition-transform cursor-pointer">bookmark</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-20 pb-32 px-container-padding min-h-screen overflow-y-auto">
+<div class="max-w-md mx-auto">
+<div class="text-center mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-white tracking-wider drop-shadow-lg">ACHIEVEMENTS</h2>
+<div class="h-1 w-16 bg-secondary-container mx-auto mt-2 rounded-full shadow-lg shadow-secondary-container/50"></div>
+</div>
+<!-- Achievement List -->
+<div class="flex flex-col gap-stack-md">
+<!-- Achievement 1: Unlocked -->
+<div class="glass-card rounded-xl p-stack-md relative overflow-hidden group">
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl icon-fill">menu_book</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-label-bold text-lg text-white">The Word Smith</h3>
+<span class="text-[10px] font-bold bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full uppercase tracking-tighter">COMPLETED</span>
+</div>
+<p class="text-sm text-white/80 font-body-md mb-4">Found 50 words.</p>
+<button class="bubbly-button w-full bg-primary-container text-white font-label-bold py-3 rounded-xl flex items-center justify-center gap-2">
+<span class="material-symbols-outlined icon-fill text-yellow-400">payments</span>
+                                CLAIM +100
+                            </button>
+</div>
+</div>
+</div>
+<!-- Achievement 2: In Progress -->
+<div class="glass-card rounded-xl p-stack-md">
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-orange-400 text-3xl icon-fill">local_fire_department</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-label-bold text-lg text-white">Streak Master</h3>
+<span class="text-xs font-bold text-white/60">4/7</span>
+</div>
+<p class="text-sm text-white/80 font-body-md mb-4">Maintain a 7-day win streak.</p>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden border border-white/10">
+<div class="h-full bg-gradient-to-r from-primary to-action-blue w-[60%] rounded-full shadow-[0_0_10px_rgba(52,152,219,0.5)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Achievement 3: Locked -->
+<div class="glass-card rounded-xl p-stack-md opacity-80">
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 grayscale">
+<span class="material-symbols-outlined text-white/40 text-3xl">emoji_nature</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-label-bold text-lg text-white/70 flex items-center gap-2">
+                                    Lexicon Scholar
+                                    <span class="material-symbols-outlined text-sm">lock</span>
+</h3>
+<span class="text-xs font-bold text-white/40">84/100</span>
+</div>
+<p class="text-sm text-white/50 font-body-md mb-4">Unlock 100 definitions in the library.</p>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden border border-white/10">
+<div class="h-full bg-white/20 w-[84%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-surface-dim border-t-4 border-primary-container dark:border-primary-container shadow-[0_-4px_10px_rgba(0,0,0,0.1)] flex justify-around items-center h-20 px-2 pb-safe">
+<!-- Quest -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-bold text-label-bold">Quest</span>
+</a>
+<!-- Lexicon (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 translate-y-[-2px] transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined icon-fill">menu_book</span>
+<span class="font-label-bold text-label-bold">Lexicon</span>
+</a>
+<!-- Store -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">local_mall</span>
+<span class="font-label-bold text-label-bold">Store</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-bold text-label-bold">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for clicking the Claim button
+        document.querySelectorAll('.bubbly-button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => {
+                    this.classList.remove('scale-95');
+                    this.innerHTML = '<span class="material-symbols-outlined icon-fill text-green-400">check_circle</span> CLAIMED';
+                    this.classList.replace('bg-primary-container', 'bg-green-600');
+                    this.style.boxShadow = '0 4px 0 0 #064e3b';
+                }, 150);
+            });
+        });
+    </script>
+</body></html>
